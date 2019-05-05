@@ -98,13 +98,13 @@ var handleDeleteBtnClick = function () {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-$("#odds").on("click", function () {
-  console.log("here");
 
-  var mykey = "968ebf4314e248c0b7903d03b1ff6c2b"
+function showGames(){
+  
+  
 
   // Here we are building the URL we need to query the database
-  var queryURL = "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=" + mykey;
+  var queryURL = "api/examples";
 
   // Here we run our AJAX call to the OpenWeatherMap API
   $.ajax({
@@ -121,30 +121,48 @@ $("#odds").on("click", function () {
       for (var i = 0; i < results.length; i++) {
 
 
-        var radioBtn = $('<input type="radio" name="rbtnCount" />');
-        
+      //   var radioBtn = $('<input type="radio" name="rbtnCount" />');
+      //   var gameForm = $("<form>");
 
         var resultsDiv = $("<div>");
+        
 
-        // var odds1 = $("<p>").text(results[i].sites[0].odds.h2h[0]); 
-        // var odds2 = $("<p>").text(results[i].sites[0].odds.h2h[1]);  
-
+   
         const team1 = results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
         const team2 = results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
+        const gameID = results[i].commence_time;
 
-        const matchup = $("<p>").text(team1 + " vs " + team2 + " ");
+        // const team1 = results[i].teams[0];
+        // const team2 = results[i].teams[1];
+        
+        const matchup = team1 +  " vs " + team2;
 
        
-
+        // gameForm.append(matchup)
         resultsDiv.append(matchup);
-        radioBtn.appendTo(matchup);
+        
 
 
         // gifRow.append(gifCol);
         // gifCol.append(gifDiv);
 
-        $("#odds").append(resultsDiv);
+        $("#games").append(resultsDiv);
+        console.log("appends");
       }
 
     });
+}
+
+// axios
+// .get("https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=968ebf4314e248c0b7903d03b1ff6c2b")
+// .then(function(response) {
+//   res.json(response.data);
+// });
+
+
+
+$(document).ready(function(){
+  console.log("works");
+  showGames();
 });
+
