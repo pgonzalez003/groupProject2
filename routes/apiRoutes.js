@@ -8,7 +8,15 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-
+  app.get("/api/users/:id", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbExamples) {
+      res.json(dbExamples);
+    });
+  });
   app.get("/api/games", function(req, res) {
     axios
       .get(
