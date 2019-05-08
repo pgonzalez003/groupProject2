@@ -123,6 +123,7 @@ function showGames() {
 
       for (var i = 0; i < results.length; i++) {
         var resultsDiv = $("<div>");
+        var gameButton = $("<button>");
 
         var team1 =
           results[i].id +
