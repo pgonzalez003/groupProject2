@@ -1,19 +1,21 @@
 // Get references to page elements
-var $exampleText = $("#example-text");
-var $exampleDescription = $("#example-description");
+var $name = $("#name");
+var $gameid = $("#gameid");
+var $picks = $("#pick");
+var $wager = $("#wager");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
 // The API object contains methods for each kind of request we'll make
 var API = {
-  saveUser: function(example) {
+  saveUser: function(users) {
     return $.ajax({
       headers: {
         "Content-Type": "application/json"
       },
       type: "POST",
       url: "api/users",
-      data: JSON.stringify(example)
+      data: JSON.stringify(users)
     });
   },
   getUsers: function() {
@@ -36,7 +38,7 @@ var refreshUsers = function() {
     var $examples = data.map(function(user) {
       var $a = $("<a>")
         .text(user.username)
-        .attr("href", "/example/" + user.id);
+        .attr("href", "/users/" + user.id);
 
       var $li = $("<li>")
         .attr({
@@ -65,8 +67,10 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var user = {
-    username: $exampleText.val().trim(),
-    picks: $exampleDescription.val().trim()
+    username: $name.val().trim(),
+    GameID: $gameid.val().trim(),
+    picks: $picks.val().trim(),
+    wager: $wager.val().trim()
   };
 
   if (!(user.username && user.picks)) {
@@ -78,8 +82,10 @@ var handleFormSubmit = function(event) {
     refreshUsers();
   });
 
-  $exampleText.val("");
-  $exampleDescription.val("");
+  $name.val("");
+  $gameid.val("");
+  $picks.val("");
+  $wager.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -101,10 +107,8 @@ $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
 function showGames(){
   
-  
-
   // Here we are building the URL we need to query the database
-  var queryURL = "api/examples";
+  var queryURL = "api/games";
 
   // Here we run our AJAX call to the OpenWeatherMap API
   $.ajax({
@@ -115,35 +119,27 @@ function showGames(){
     .then(function(response) {
       // Log the resulting object
       console.log(response.data);
-      var results = response.data;
+      const results = response.data;
 
-      for (var i = 0; i < results.length; i++) {
+      for (const i = 0; i < results.length; i++) {
 
-
-      //   var radioBtn = $('<input type="radio" name="rbtnCount" />');
-      //   var gameForm = $("<form>");
-
-        var resultsDiv = $("<div>");
+        const resultsDiv = $("<div>");
         
-
-        // var odds1 = $("<p>").text(results[i].sites[0].odds.h2h[0]);
-        // var odds2 = $("<p>").text(results[i].sites[0].odds.h2h[1]);
+        // const team1 =
+        //   results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
+        // const team2 =
+        //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
         const team1 =
-          results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
+          results[i].teams[0];
         const team2 =
-          results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
-
-        // const team1 = results[i].teams[0];
-        // const team2 = results[i].teams[1];
+          results[i].teams[1];
         
+
         const matchup = team1 +  " vs " + team2;
 
         resultsDiv.append(matchup);
-        
-
-        // gifRow.append(gifCol);
-        // gifCol.append(gifDiv);
+      
 
         $("#games").append(resultsDiv);
         console.log("appends");
@@ -151,11 +147,7 @@ function showGames(){
     });
 }
 
-// axios
-// .get("https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=968ebf4314e248c0b7903d03b1ff6c2b")
-// .then(function(response) {
-//   res.json(response.data);
-// });
+
 
 
 
