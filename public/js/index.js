@@ -119,27 +119,22 @@ function showGames(){
     .then(function(response) {
       // Log the resulting object
       console.log(response.data);
-      const results = response.data;
+      var results = response.data;
 
-      for (const i = 0; i < results.length; i++) {
+      for (var i = 0; i < results.length; i++) {
+        var resultsDiv = $("<div>");
 
-        const resultsDiv = $("<div>");
-        
         // const team1 =
         //   results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
         // const team2 =
         //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
-        const team1 =
-          results[i].teams[0];
-        const team2 =
-          results[i].teams[1];
-        
+        var team1 = results[i].teams[0];
+        var team2 = results[i].teams[1];
 
-        const matchup = team1 +  " vs " + team2;
+        var matchup = team1 +  " vs " + team2;
 
         resultsDiv.append(matchup);
-      
 
         $("#games").append(resultsDiv);
         console.log("appends");
