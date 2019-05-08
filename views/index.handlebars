@@ -1,39 +1,55 @@
 <div id="home">
   <div class="container">
     <div class="row">
-      <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text"
-              placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description"
-              placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each users}}
-          <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.username}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
-          </li>
-          {{/each}}
-        </ul>
+      <div class="col-12">
+        <h1 class="logo">
+          <span class="word1">The</span>
+          <span class="word2">Title</span>
+        </h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-12">
-        <div id="odds">
-          hello
-        </div>
+      <div class="col-lg-6">
+        <h2>Games</h2>
+        <div id="games"></div>
       </div>
+      <div class="col-lg-6">
+        <h2>Pick 'em</h2>
+        <form class="clearfix mb-4" action="POST">
+          <div class="form-group">
+            <label for="example-text">Enter Username</label>
+            <input type="text" id="name" class="form-control" aria-describedby="example-text" placeholder="Baseball-Fan8">
+          </div>
+          <div class="form-group">
+            <label for="example-text">Enter Game ID</label>
+            <input type="text" id="gameid" class="form-control" aria-describedby="example-text" placeholder="1500075223">
+          </div>
+          <div class="form-group">
+            <label for="example-text">Pick Winner</label>
+            <input type="text" id="pick" class="form-control" aria-describedby="example-text" placeholder="Toronto Blue Jays">
+          </div>
+          <div class="form-group">
+            <label for="example-text">Wager</label>
+            <input type="text" id="wager" class="form-control" aria-describedby="example-text" placeholder="$200.00">
+          </div>
+          <button id="submit" class="btn btn-primary float-right">Submit</button>
+        </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <h3>Entries:</h3>
+        <ul id="example-list" class="list-group">
+          {{#each users}}
+            <li data-id="{{this.id}}" class="list-group-item">
+              <a href="users/{{this.id}}">{{this.username}}</a>
+              <button class="btn btn-danger float-right delete">ｘ</button>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+      <div class="col-2"></div>
     </div>
   </div>
 </div>
@@ -41,3 +57,4 @@
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
 <script type='text/javascript' src='../config.js'></script>
+<script type="text/javascript" src="../add.js"></script>
