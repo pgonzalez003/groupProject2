@@ -9,7 +9,7 @@ $("#add-btn").on("click", function(event) {
     Name: $("#name")
       .val()
       .trim(),
-    GameID: $("#gameid")
+    gameID: $("#gameid")
       .val()
       .trim(),
     Pick: $("#pick")

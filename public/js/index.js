@@ -5,6 +5,7 @@ var $picks = $("#pick");
 var $wager = $("#wager");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+var games;
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -68,7 +69,7 @@ var handleFormSubmit = function(event) {
 
   var user = {
     username: $name.val().trim(),
-    GameID: $gameid.val().trim(),
+    gameID: $gameid.val().trim(),
     picks: $picks.val().trim(),
     wager: $wager.val().trim()
   };
@@ -104,9 +105,7 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-
-function showGames(){
-  
+function showGames() {
   // Here we are building the URL we need to query the database
   var queryURL = "api/games";
 
@@ -118,28 +117,25 @@ function showGames(){
     // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
       // Log the resulting object
-      console.log(response.data);
-      const results = response.data;
+      console.log(response);
+      games = response;
+      var results = response;
 
-      for (const i = 0; i < results.length; i++) {
+      for (var i = 0; i < results.length; i++) {
+        var resultsDiv = $("<div>");
 
-        const resultsDiv = $("<div>");
-        
-        // const team1 =
-        //   results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
-        // const team2 =
-        //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
+        var team1 =
+          results[i].id +
+          ": " +
+          results[i].teams[0] +
+          ": " +
+          results[i].sites[0].odds.h2h[0];
+        var team2 =
+          results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
-        const team1 =
-          results[i].teams[0];
-        const team2 =
-          results[i].teams[1];
-        
-
-        const matchup = team1 +  " vs " + team2;
+        var matchup = team1 + " vs " + team2;
 
         resultsDiv.append(matchup);
-      
 
         $("#games").append(resultsDiv);
         console.log("appends");
@@ -147,12 +143,7 @@ function showGames(){
     });
 }
 
-
-
-
-
-$(document).ready(function(){
+$(document).ready(function() {
   console.log("works");
   showGames();
 });
-
