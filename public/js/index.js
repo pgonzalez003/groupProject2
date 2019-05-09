@@ -68,10 +68,10 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var user = {
-    username: $name.val().trim(),
-    gameID: $gameid.val().trim(),
-    picks: $picks.val().trim(),
-    wager: $wager.val().trim()
+    username: $name.val().trim()
+    // gameID: $gameid.val().trim(),
+    // picks: $picks.val().trim(),
+    // wager: $wager.val().trim()
   };
 
   if (!(user.username && user.picks)) {
@@ -123,7 +123,7 @@ function showGames() {
 
       for (var i = 0; i < results.length; i++) {
         var resultsDiv = $("<div>");
-        var gameButton = $("<button>");
+        var gameButton = $("<button type='button'>");
 
         var team1 =
           results[i].id +
@@ -134,9 +134,11 @@ function showGames() {
         var team2 =
           results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
-        var matchup = team1 + " vs " + team2;
+        var matchUp = team1 + " vs " + team2;
+        // gameButton.addClass("btn btn-warning");
 
-        resultsDiv.append(matchup);
+        // matchUp.append(gameButton);
+        resultsDiv.append(matchUp);
 
         $("#games").append(resultsDiv);
         console.log("appends");
@@ -145,6 +147,13 @@ function showGames() {
 }
 
 $(document).ready(function() {
-  console.log("works");
+  $("#gameArea").hide();
+  $("#inputUser").show();
   showGames();
+});
+
+$("#submit").on("click", function() {
+  console.log("works");
+  $("#inputUser").hide();
+  $("#gameArea").show();
 });
