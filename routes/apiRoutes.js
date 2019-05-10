@@ -8,14 +8,27 @@ module.exports = function(app) {
       res.json(dbExamples);
     });
   });
-
+  app.get("/api/users/:id", function(req, res) {
+    db.User.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function(dbExamples) {
+      res.json(dbExamples);
+    });
+  });
   app.get("/api/games", function(req, res) {
     axios
       .get(
         "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=968ebf4314e248c0b7903d03b1ff6c2b"
       )
       .then(function(response) {
-        res.json(response.data);
+        res.json(response.data.data.map(item => {
+          return {
+            ...item,
+            id: `${item.commence_time}_${item.home_team}`,
+          }
+        }));
       });
   });
 

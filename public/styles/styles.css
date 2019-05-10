@@ -15,9 +15,17 @@ body {
  
 }
 
-.col-lg-6 h2{
+.col-lg-12 h2{
   text-align: center;
   color: white;
+}
+.col-8 h3{
+  text-align: center;
+  color: white;
+}
+
+.col-8{
+  margin-top: 5px;
 }
 
 form{
