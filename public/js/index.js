@@ -117,6 +117,7 @@ function showGames() {
     // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
       // Log the resulting object
+
       console.log(response);
       games = response;
       var results = response;
@@ -141,12 +142,13 @@ function showGames() {
         resultsDiv.append(matchUp);
 
         $("#games").append(resultsDiv);
-        console.log("appends");
+        // console.log("appends");
       }
     });
 }
 
 $(document).ready(function() {
+
   $("#gameArea").hide();
   $("#inputUser").show();
   showGames();
