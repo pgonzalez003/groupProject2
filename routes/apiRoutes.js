@@ -23,16 +23,11 @@ module.exports = function(app) {
         "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=968ebf4314e248c0b7903d03b1ff6c2b"
       )
       .then(function(response) {
-        const resp = response.data.data;
-        resp.forEach(game => {
-          const tempGame = {
-            homeTeam: game.teams[0],
-            awayTeam: game.teams[1]
-          };
-          db.Games.create(tempGame).then(results => {
-            console.log(results);
-          });
-        });
+        res.json(
+          response.data.data.map(item => {
+            return response.data;
+          })
+        );
       });
   });
 

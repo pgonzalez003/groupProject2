@@ -5,6 +5,8 @@ var $picks = $("#pick");
 var $wager = $("#wager");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+// eslint-disable-next-line no-unused-vars
+var games;
 
 // The API object contains methods for each kind of request we'll make
 var API = {
@@ -68,9 +70,9 @@ var handleFormSubmit = function(event) {
 
   var user = {
     username: $name.val().trim(),
-    GameID: $gameid.val().trim(),
-    picks: $picks.val().trim(),
-    wager: $wager.val().trim()
+    // gameID: $gameid.val().trim(),
+    picks: $picks.val().trim()
+    // wager: $wager.val().trim()
   };
 
   if (!(user.username && user.picks)) {
@@ -116,33 +118,34 @@ function showGames() {
     // We store all of the retrieved data inside of an object called "response"
     .then(function(response) {
       // Log the resulting object
-      console.log(response.data);
-      const results = response.data;
 
+      var results = response[0].data;
+      console.log(results[0]);
+
+      //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
-        const resultsDiv = $("<div>");
+        var team1 = results[i].teams[0];
+        var team2 = results[i].teams[1];
 
-        // const team1 =
-        //   results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
-        // const team2 =
-        //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
-
-        const team1 = results[i].teams[0];
-        const team2 = results[i].teams[1];
-
-        console.log(team1);
-
-        const matchup = team1 + " vs " + team2;
-
-        resultsDiv.append(matchup);
-
-        $("#games").append(resultsDiv);
-        // console.log("appends");
+        $("#games").append(
+          `<input type="radio" id = "pick" name="pick${[
+            i
+          ]}"value="${team1}">${team1} at <input type="radio" name="pick${[
+            i
+          ]}" value="${team2}">${team2}<br>`
+        );
       }
     });
 }
 
 $(document).ready(function() {
-  console.log("works");
+  $("#gameArea").hide();
+  $("#inputUser").show();
   showGames();
+});
+
+$("#submit").on("click", function() {
+  console.log("works");
+  $("#inputUser").hide();
+  $("#gameArea").show();
 });
