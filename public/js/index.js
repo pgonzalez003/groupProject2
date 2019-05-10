@@ -71,11 +71,12 @@ var handleFormSubmit = function(event) {
   var user = {
     username: $name.val().trim(),
     // gameID: $gameid.val().trim(),
+
     picks: $picks.val().trim()
     // wager: $wager.val().trim()
   };
 
-  if (!(user.username && user.picks)) {
+  if (!(user.username && user.wager)) {
     alert("You must enter an example text and description!");
     return;
   }
@@ -119,8 +120,10 @@ function showGames() {
     .then(function(response) {
       // Log the resulting object
 
+
       var results = response[0].data;
       console.log(results[0]);
+
 
       //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
@@ -139,6 +142,7 @@ function showGames() {
 }
 
 $(document).ready(function() {
+
   $("#gameArea").hide();
   $("#inputUser").show();
   showGames();
