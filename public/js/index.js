@@ -104,9 +104,7 @@ var handleDeleteBtnClick = function() {
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
 
-
-function showGames(){
-  
+function showGames() {
   // Here we are building the URL we need to query the database
   var queryURL = "api/games";
 
@@ -121,38 +119,30 @@ function showGames(){
       console.log(response.data);
       const results = response.data;
 
-      for (const i = 0; i < results.length; i++) {
-
+      for (var i = 0; i < results.length; i++) {
         const resultsDiv = $("<div>");
-        
+
         // const team1 =
         //   results[i].teams[0] + ": " + results[i].sites[0].odds.h2h[0];
         // const team2 =
         //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
-        const team1 =
-          results[i].teams[0];
-        const team2 =
-          results[i].teams[1];
-        
+        const team1 = results[i].teams[0];
+        const team2 = results[i].teams[1];
 
-        const matchup = team1 +  " vs " + team2;
+        console.log(team1);
+
+        const matchup = team1 + " vs " + team2;
 
         resultsDiv.append(matchup);
-      
 
         $("#games").append(resultsDiv);
-        console.log("appends");
+        // console.log("appends");
       }
     });
 }
 
-
-
-
-
-$(document).ready(function(){
+$(document).ready(function() {
   console.log("works");
   showGames();
 });
-
