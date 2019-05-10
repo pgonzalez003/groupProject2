@@ -71,11 +71,11 @@ var handleFormSubmit = function(event) {
   var user = {
     username: $name.val().trim(),
     // gameID: $gameid.val().trim(),
-    picks: $picks.val().trim()
-    // wager: $wager.val().trim()
+    picks: $picks.val(),
+    wager: $wager.val().trim()
   };
 
-  if (!(user.username && user.picks)) {
+  if (!(user.username && user.wager)) {
     alert("You must enter an example text and description!");
     return;
   }
@@ -125,7 +125,7 @@ function showGames() {
 
       for (var i = 0; i < results.length; i++) {
         var resultsDiv = $("<div/>");
-        var gameButton = $("input[name='picks']:checked").val()
+      
         // var team1 =
         //   results[i].id +
         //   ": " +
@@ -138,10 +138,10 @@ function showGames() {
         var team1 = results[i].id + ": " + results[i].teams[0];
         var team2 = results[i].teams[1];
 
-        var matchUp = team1 + " vs " + team2;
+        var matchUp =
+          team1 + " vs " + team2 + $("input[name='picks']:checked").val();
         // gameButton.addClass("btn btn-warning");
 
-        
         resultsDiv.append(matchUp);
 
         $("#games").append(resultsDiv);
