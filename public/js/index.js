@@ -5,6 +5,7 @@ var $picks = $("#pick");
 var $wager = $("#wager");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
+// eslint-disable-next-line no-unused-vars
 var games;
 
 // The API object contains methods for each kind of request we'll make
@@ -122,22 +123,25 @@ function showGames() {
       var results = response;
 
       for (var i = 0; i < results.length; i++) {
-        var resultsDiv = $("<div>");
-        var gameButton = $("<button type='button'>");
+        var resultsDiv = $("<div/>");
+        var gameButton = $("<input/>");
+        gameButton = $("input[name='" + fieldName + "']:checked").val()
+        // var team1 =
+        //   results[i].id +
+        //   ": " +
+        //   results[i].teams[0] +
+        //   ": " +
+        //   results[i].sites[0].odds.h2h[0];
+        // var team2 =
+        //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
 
-        var team1 =
-          results[i].id +
-          ": " +
-          results[i].teams[0] +
-          ": " +
-          results[i].sites[0].odds.h2h[0];
-        var team2 =
-          results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
+        var team1 = results[i].id + ": " + results[i].teams[0];
+        var team2 = results[i].teams[1];
 
         var matchUp = team1 + " vs " + team2;
         // gameButton.addClass("btn btn-warning");
 
-        // matchUp.append(gameButton);
+        ;
         resultsDiv.append(matchUp);
 
         $("#games").append(resultsDiv);
