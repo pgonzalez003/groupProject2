@@ -69,9 +69,9 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var user = {
-    username: $name.val().trim(),
+    username: $name.val().trim()
     // gameID: $gameid.val().trim(),
-    picks: $picks.val().trim()
+    // picks: $picks.val().trim()
     // wager: $wager.val().trim()
   };
 
@@ -123,35 +123,23 @@ function showGames() {
       games = response;
       var results = response;
 
+      //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
-        var resultsDiv = $("<div/>");
-        var gameButton = $("input[name='picks']:checked").val()
-        // var team1 =
-        //   results[i].id +
-        //   ": " +
-        //   results[i].teams[0] +
-        //   ": " +
-        //   results[i].sites[0].odds.h2h[0];
-        // var team2 =
-        //   results[i].teams[1] + ": " + results[i].sites[0].odds.h2h[1];
-
-        var team1 = results[i].id + ": " + results[i].teams[0];
+        var team1 = results[i].teams[0];
         var team2 = results[i].teams[1];
 
-        var matchUp = team1 + " vs " + team2;
-        // gameButton.addClass("btn btn-warning");
-
-        
-        resultsDiv.append(matchUp);
-
-        $("#games").append(resultsDiv);
-        // console.log("appends");
+        $("#games").append(
+          `<input type="radio" name="pick${[
+            i
+          ]}"value="${team1}">${team1} at <input type="radio" name="pick${[
+            i
+          ]}" value="${team2}">${team2}<br>`
+        );
       }
     });
 }
 
 $(document).ready(function() {
-
   $("#gameArea").hide();
   $("#inputUser").show();
   showGames();
