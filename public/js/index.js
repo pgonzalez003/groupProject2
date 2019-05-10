@@ -69,9 +69,9 @@ var handleFormSubmit = function(event) {
   event.preventDefault();
 
   var user = {
-    username: $name.val().trim()
+    username: $name.val().trim(),
     // gameID: $gameid.val().trim(),
-    // picks: $picks.val().trim(),
+    picks: $picks.val().trim()
     // wager: $wager.val().trim()
   };
 
@@ -125,8 +125,7 @@ function showGames() {
 
       for (var i = 0; i < results.length; i++) {
         var resultsDiv = $("<div/>");
-        var gameButton = $("<input/>");
-        gameButton = $("input[name='" + fieldName + "']:checked").val()
+        var gameButton = $("input[name='picks']:checked").val()
         // var team1 =
         //   results[i].id +
         //   ": " +
@@ -142,7 +141,7 @@ function showGames() {
         var matchUp = team1 + " vs " + team2;
         // gameButton.addClass("btn btn-warning");
 
-        ;
+        
         resultsDiv.append(matchUp);
 
         $("#games").append(resultsDiv);
