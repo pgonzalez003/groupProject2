@@ -1,0 +1,8 @@
+<input type="radio" id="myId" name="myRadio" onchange="changed()" />
+<input type="radio" name="myRadio" onchange="changed" />
+<script>
+  function changed() {
+    var value = document.getElementById("myId").checked;
+    console.log(value);
+  }
+</script>
