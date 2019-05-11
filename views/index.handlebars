@@ -4,20 +4,17 @@
       <div class="col-12">
         <h1 class="logo">
           <span class="word1">The</span>
-          <span class="word2">Title</span>
+          <span class="word2">House</span>
         </h1>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-6">
-        <h2>Games</h2>
-        <div id="games"></div>
-      </div>
-      <div class="col-lg-6">
+      <div class="col-lg-12" id="inputUser">
         <h2>Pick 'em</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
             <label for="example-text">Enter Username</label>
+
             <input type="text" id="name" class="form-control" aria-describedby="example-text"
               placeholder="Baseball-Fan8">
           </div>
@@ -31,12 +28,19 @@
             <input type="text" id="pick" class="form-control" aria-describedby="example-text"
               placeholder="Toronto Blue Jays">
           </div> --}}
+
           <div class="form-group">
-            <label for="example-text">Wager</label>
-            <input type="text" id="wager" class="form-control" aria-describedby="example-text" placeholder="$200.00">
+            <label for="example-text">Enter Wager</label>
+            <input type="text" id="wager" class="form-control" aria-describedby="example-text" placeholder="$200">
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12" id="gameArea">
+        <h2>Games</h2>
+        <div id="games"></div>
       </div>
     </div>
     <div class="row">

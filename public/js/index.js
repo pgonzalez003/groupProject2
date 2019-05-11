@@ -67,6 +67,7 @@ var refreshUsers = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+
   var pick = [
     "pick0",
     "pick1",
@@ -105,6 +106,7 @@ var handleFormSubmit = function(event) {
     API.saveUser(user).then(function() {
       refreshUsers();
     });
+
   }
   $name.val("");
   // $gameid.val("");
@@ -141,9 +143,11 @@ function showGames() {
     .then(function(response) {
       // Log the resulting object
 
+
       var results = response[0].data;
 
       console.log(results);
+
 
       //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
@@ -162,6 +166,7 @@ function showGames() {
 }
 
 $(document).ready(function() {
+
   $("#gameArea").hide();
   $("#inputUser").show();
   showGames();
