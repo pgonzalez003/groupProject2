@@ -67,6 +67,7 @@ var refreshUsers = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+  
   var pick = [
     "pick0",
     "pick1",
@@ -92,6 +93,7 @@ var handleFormSubmit = function(event) {
     console.log(pick);
     var user = {
       username: $name.val().trim(),
+
       // gameID: $gameid.val().trim(),
       picks: $("input[name='" + newPick + "']:checked").val(),
       // wager: $wager.val().trim()
@@ -102,9 +104,11 @@ var handleFormSubmit = function(event) {
     //   return;
     // }
 
+
     API.saveUser(user).then(function() {
       refreshUsers();
     });
+
   }
   $name.val("");
   // $gameid.val("");
@@ -142,6 +146,7 @@ function showGames() {
       // Log the resulting object
 
       var results = response[0].data;
+
 
       console.log(results);
 
