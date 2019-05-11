@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     username: DataTypes.STRING,
     picks: DataTypes.TEXT,
-    gameID: DataTypes.STRING,
+    gameID: DataTypes.INTEGER,
     wager: DataTypes.INTEGER
   });
 
