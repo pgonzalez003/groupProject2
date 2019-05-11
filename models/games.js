@@ -1,8 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
   var Games = sequelize.define("Games", {
     gameID: {
-      type: DataTypes.STRING(100),
-      defaultValue: DataTypes.STRING,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV1,
       primaryKey: true
     },
     homeTeam: DataTypes.TEXT,

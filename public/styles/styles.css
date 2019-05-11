@@ -15,17 +15,15 @@ body {
  
 }
 
-.col-lg-12 h2{
-  text-align: center;
-  color: white;
-}
-.col-8 h3{
+.col-lg-6 h2{
   text-align: center;
   color: white;
 }
 
-.col-8{
-  margin-top: 5px;
+.col-8 h3{
+  text-align: center;
+  color: white;
+  padding-top: 15px;
 }
 
 form{

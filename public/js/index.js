@@ -67,7 +67,7 @@ var refreshUsers = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
-
+  
   var pick = [
     "pick0",
     "pick1",
@@ -93,15 +93,17 @@ var handleFormSubmit = function(event) {
     console.log(pick);
     var user = {
       username: $name.val().trim(),
-      gameID: $gameid.val().trim(),
+
+      // gameID: $gameid.val().trim(),
       picks: $("input[name='" + newPick + "']:checked").val(),
-      wager: $wager.val().trim()
+      // wager: $wager.val().trim()
     };
 
-    if (!(user.username && user.picks)) {
-      alert("You must enter an example text and description!");
-      return;
-    }
+    // if (!(user.username && user.picks)) {
+    //   alert("You must enter an example text and description!");
+    //   return;
+    // }
+
 
     API.saveUser(user).then(function() {
       refreshUsers();
@@ -143,11 +145,10 @@ function showGames() {
     .then(function(response) {
       // Log the resulting object
 
-
       var results = response[0].data;
 
-      console.log(results);
 
+      console.log(results);
 
       //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
@@ -166,7 +167,6 @@ function showGames() {
 }
 
 $(document).ready(function() {
-
   $("#gameArea").hide();
   $("#inputUser").show();
   showGames();
