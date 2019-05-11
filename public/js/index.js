@@ -67,27 +67,53 @@ var refreshUsers = function() {
 // Save the new example to the db and refresh the list
 var handleFormSubmit = function(event) {
   event.preventDefault();
+  
+  var pick = [
+    "pick0",
+    "pick1",
+    "pick2",
+    "pick3",
+    "pick4",
+    "pick5",
+    "pick6",
+    "pick7",
+    "pick8",
+    "pick9",
+    "pick10",
+    "pick11",
+    "pick12",
+    "pick13",
+    "pick14",
+    "pick15",
+    "pick16"
+  ];
 
-  var user = {
-    username: $name.val().trim()
-    // gameID: $gameid.val().trim(),
-    // picks: $picks.val().trim()
-    // wager: $wager.val().trim()
-  };
+  for (i = 0; i < pick.length; i++) {
+    newPick = pick[i];
+    console.log(pick);
+    var user = {
+      username: $name.val().trim(),
 
-  if (!(user.username && user.picks)) {
-    alert("You must enter an example text and description!");
-    return;
+      // gameID: $gameid.val().trim(),
+      picks: $("input[name='" + newPick + "']:checked").val(),
+      // wager: $wager.val().trim()
+    };
+
+    // if (!(user.username && user.picks)) {
+    //   alert("You must enter an example text and description!");
+    //   return;
+    // }
+
+
+    API.saveUser(user).then(function() {
+      refreshUsers();
+    });
+
   }
-
-  API.saveUser(user).then(function() {
-    refreshUsers();
-  });
-
   $name.val("");
-  $gameid.val("");
+  // $gameid.val("");
   $picks.val("");
-  $wager.val("");
+  // $wager.val("");
 };
 
 // handleDeleteBtnClick is called when an example's delete button is clicked
@@ -119,10 +145,9 @@ function showGames() {
     .then(function(response) {
       // Log the resulting object
 
-      console.log(response);
-      games = response;
-      var results = response;
+      var results = response[0].data;
 
+<<<<<<< HEAD
       //Creates radio buttons for all games
       for (var i = 0; i < results.length; i++) {
         var team1 = results[i].teams[0];
@@ -132,6 +157,20 @@ function showGames() {
           `<input type="radio" name="pick${[
             i
           ]}"value="${team1}">${team1} at <input type="radio" name="pick${[
+=======
+
+      console.log(results);
+
+      //Creates radio buttons for all games
+      for (var i = 0; i < results.length; i++) {
+        var team1 = results[i].teams[0];
+        var team2 = results[i].teams[1];
+
+        $("#games").append(
+          `<input type="radio" id = "pick" name="pick${[
+            i
+          ]}"value="${team1}">${team1} at <input type="radio" id = "pick" name="pick${[
+>>>>>>> b13df8f9bccd262008a7ab3066edf8283632cb45
             i
           ]}" value="${team2}">${team2}<br>`
         );

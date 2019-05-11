@@ -20,15 +20,14 @@ module.exports = function(app) {
   app.get("/api/games", function(req, res) {
     axios
       .get(
-        "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=968ebf4314e248c0b7903d03b1ff6c2b"
+        "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=5ea683ff9b10b94e917fea8a4d0e99fe"
       )
       .then(function(response) {
-        res.json(response.data.data.map(item => {
-          return {
-            ...item,
-            id: `${item.commence_time}_${item.home_team}`,
-          }
-        }));
+        res.json(
+          response.data.data.map(item => {
+            return response.data;
+          })
+        );
       });
   });
 
