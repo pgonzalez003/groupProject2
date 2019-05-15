@@ -1,14 +1,14 @@
 {
   "development": {
     "username": "root",
-    "password": "MyNewPass",
+    "password": "Crayola16!",
     "database": "usersdb",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "MyNewPass",
+    "password": "Crayola16!",
     "database": "testdb",
     "host": "localhost",
     "dialect": "mysql",

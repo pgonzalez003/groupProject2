@@ -12,9 +12,9 @@ $("#add-btn").on("click", function(event) {
     GameID: $("#gameid")
       .val()
       .trim(),
-    Pick: $("#pick")
-      .val()
-      .trim(),
+    // Pick: $("#pick")
+    //   .val()
+    //   .trim(),
     Wager: $("#wager")
       .val()
       .trim()
@@ -30,5 +30,5 @@ $("#add-btn").on("click", function(event) {
 
   // Empty each input box by replacing the value with an empty string
   $("#name").val("");
-  $("#pick").val("");
+  // $("#pick").val("");
 });

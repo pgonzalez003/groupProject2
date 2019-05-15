@@ -20,7 +20,7 @@ module.exports = function(app) {
   app.get("/api/games", function(req, res) {
     axios
       .get(
-        "https://api.the-odds-api.com/v3/odds/?sport=baseball_mlb&region=us&mkt=h2h&apiKey=5ea683ff9b10b94e917fea8a4d0e99fe"
+        "https://api.the-odds-api.com/v3/odds/?sport=basketball_nba&region=us&mkt=h2h&apiKey=5ea683ff9b10b94e917fea8a4d0e99fe"
       )
       .then(function(response) {
         res.json(

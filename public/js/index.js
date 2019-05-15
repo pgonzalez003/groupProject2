@@ -112,7 +112,7 @@ var handleFormSubmit = function(event) {
   }
   $name.val("");
   // $gameid.val("");
-  $picks.val("");
+  // $picks.val("");
   // $wager.val("");
 };
 
@@ -147,17 +147,6 @@ function showGames() {
 
       var results = response[0].data;
 
-<<<<<<< HEAD
-      //Creates radio buttons for all games
-      for (var i = 0; i < results.length; i++) {
-        var team1 = results[i].teams[0];
-        var team2 = results[i].teams[1];
-
-        $("#games").append(
-          `<input type="radio" name="pick${[
-            i
-          ]}"value="${team1}">${team1} at <input type="radio" name="pick${[
-=======
 
       console.log(results);
 
@@ -170,7 +159,6 @@ function showGames() {
           `<input type="radio" id = "pick" name="pick${[
             i
           ]}"value="${team1}">${team1} at <input type="radio" id = "pick" name="pick${[
->>>>>>> b13df8f9bccd262008a7ab3066edf8283632cb45
             i
           ]}" value="${team2}">${team2}<br>`
         );
